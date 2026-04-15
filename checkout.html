@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <h2>Checkout</h2>
+</header>
+
+<div class="checkout-container">
+
+  <!-- 🔹 ADDRESS -->
+  <div class="checkout-form">
+    <h3>Shipping Address</h3>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="address" placeholder="Address">
+    <input type="text" id="city" placeholder="City">
+    <input type="text" id="pincode" placeholder="Pincode">
+    <input type="text" id="phone" placeholder="Phone Number">
+
+    <h3>Payment Method</h3>
+
+    <select id="payment">
+      <option value="cod">Cash on Delivery</option>
+      <option value="upi">UPI (Scan QR)</option>
+    </select>
+  </div>
+
+  <!-- 🔹 SUMMARY -->
+  <div class="checkout-summary">
+    <h3>Order Summary</h3>
+
+
+<!-- 💰 PRICE SUMMARY -->
+<div id="priceSummaryBox" class="price-box">
+  <p><strong>Total:</strong> ₹<span id="summaryTotal">0</span></p>
+  <p><strong>Discount:</strong> ₹<span id="discount">0</span></p>
+  <p><strong>Final Payable:</strong> ₹<span id="finalTotal">0</span></p>
+</div>
+
+
+
+    <button onclick="handleOrder()">Place Order</button>
+
+    <!-- 🔥 UPI SECTION -->
+    <div id="upiSection" style="display:none; text-align:center; margin-top:20px;">
+
+      <h3>Scan & Pay</h3>
+
+      <img src="qr.jpeg" width="200">
+
+      <p>Scan using GPay / PhonePe</p>
+
+      <p style="color:green;">
+        📸 Screenshot optional — send it manually on WhatsApp for faster verification
+      </p>
+
+      <h2 id="timer">05:00</h2>
+
+      <button onclick="confirmPayment()">I Have Paid</button>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="coupon-box">
+  <input type="text" id="couponCode" placeholder="Enter coupon code">
+  <button onclick="applyCoupon()">Apply</button>
+  <p id="couponMsg"></p>
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+</html>

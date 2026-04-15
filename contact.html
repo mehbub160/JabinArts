@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* FAQ DESIGN */
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      padding: 12px 0;
+    }
+
+    .question-text {
+      flex: 1;
+    }
+
+    .toggle-btn {
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 8px 0;
+      color: #555;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <h2 style="display:flex; align-items:center; gap:8px;">
+  <img src="logo.png" style="height:30px;">
+  Jabin Arts
+</h2>
+  <nav>
+    <a href="index.html">Home</a>
+
+    <a href="cart.html">
+      🛒 <span id="cartCount">0</span>
+    </a>
+
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO CONTACT -->
+<section class="contact-hero">
+  <p class="tag">CONTACT</p>
+  <h1>Connect With Us</h1>
+  <p class="subtitle">
+    For thoughtful messages and kind words, feel free to reach out.
+  </p>
+
+  <div class="contact-form">
+    <div class="row">
+      <input type="text" placeholder="First Name">
+      <input type="text" placeholder="Last Name">
+    </div>
+
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Phone Number">
+
+    <textarea placeholder="Type your message..."></textarea>
+
+    <button id="discordBtn" class="gold-btn" type="button">
+      Get in Touch
+    </button>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <h1>Frequently Asked Questions</h1>
+  <p>Find answers to common questions about shipping and orders.</p>
+
+  <div class="faq">
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="question-text">What shipping options do you have?</span>
+        <span class="toggle-btn">+</span>
+      </div>
+      <div class="faq-answer">We offer standard and express shipping across India.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="question-text">Can I cancel my order?</span>
+        <span class="toggle-btn">+</span>
+      </div>
+      <div class="faq-answer">Yes, you can cancel your order before it is shipped.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="question-text">Can I return my order?</span>
+        <span class="toggle-btn">+</span>
+      </div>
+      <div class="faq-answer">Returns are accepted within 7 days of delivery.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="question-text">How to care for artworks?</span>
+        <span class="toggle-btn">+</span>
+      </div>
+      <div class="faq-answer">Keep artwork away from direct sunlight and moisture.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="question-text">What payment methods do you accept?</span>
+        <span class="toggle-btn">+</span>
+      </div>
+      <div class="faq-answer">We accept UPI, Cards, and Razorpay payments.</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-box">
+    <h1>Commission a Painting</h1>
+    <p>
+      Collaborate with us on a custom artwork that reflects your story.
+    </p>
+    <a href="support.html">
+  <button class="gold-btn">Learn More</button>
+</a>
+  </div>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

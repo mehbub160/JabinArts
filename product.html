@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .preview-box {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .preview-container {
+      position: relative;
+      max-width: 600px;
+      margin: auto;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #wallImage {
+      width: 100%;
+    }
+
+    #artImage {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      width: 200px;
+      cursor: move;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">← Back to Gallery</a>
+
+<div id="productDetail" class="product-detail"></div>
+
+<!-- 🔥 PREVIEW SECTION -->
+<div class="preview-box">
+
+  <h3>Preview on Your Wall 🖼️</h3>
+
+  <input type="file" id="uploadWall" accept="image/*">
+
+  <div class="preview-container">
+    <img id="wallImage">
+    <img id="artImage">
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button onclick="zoomIn()">Zoom +</button>
+    <button onclick="zoomOut()">Zoom -</button>
+    <button onclick="rotate()">Rotate</button>
+    <button onclick="downloadImage()">Download</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</body>
+</html>
