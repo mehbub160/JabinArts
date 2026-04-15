@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Support</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .support-container {
+      text-align: center;
+      padding: 50px;
+    }
+
+    .support-box {
+      background: #111;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .support-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .support-box p {
+      margin: 10px 0;
+    }
+
+    .support-btn {
+      display: block;
+      margin-top: 15px;
+      padding: 10px;
+      background: gold;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h2>Art Marketplace</h2>
+</header>
+
+<div class="support-container">
+
+  <div class="support-box">
+    <h2>Contact Support</h2>
+    <p>Need help? Chat with us directly 👇</p>
+
+    <p><strong>📞 Phone:</strong> +91 8000041198</p>
+    <p><strong>📧 Email:</strong> support@art.com</p>
+
+    <!-- WhatsApp -->
+    <button class="support-btn" onclick="openWhatsApp()">
+      Chat on WhatsApp
+    </button>
+
+    <!-- Discord -->
+    <button class="support-btn" onclick="openDiscord()">
+      Join Discord
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+function openWhatsApp() {
+  window.open("https://wa.me/918000041198", "_blank");
+}
+
+function openDiscord() {
+  window.open("https://discord.gg/YOUR_LINK", "_blank");
+}
+</script>
+
+</body>
+</html>
