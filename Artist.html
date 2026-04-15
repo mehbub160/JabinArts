@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f1ea;
+            color: #3e2c23;
+        }
+
+        nav {
+            background-color: #3e2c23;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: #f5f1ea;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d2a679;
+        }
+
+        .container {
+            padding: 40px 20px;
+        }
+
+        .artist-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e0d6cc;
+            transition: 0.3s;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .artist-card img {
+            width: 150px;
+            border-radius: 50%;
+            border: 3px solid #d2a679;
+            margin-bottom: 15px;
+        }
+
+        .artist-card h2 {
+            margin: 10px 0;
+            color: #3e2c23;
+        }
+
+        .artist-card p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        strong {
+            color: #8b5e3c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        
+        <a href="index.html">Home</a>
+        <a href="Artist.html">Artists</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Artist Details -->
+    <div class="container">
+        <div class="artist-card">
+            <img src="jabin.jpeg" alt="Artist">
+            <h2>Jabin Akhter Borah</h2>
+            <p><strong>Specialization:</strong> Digital Art</p>
+            <p><strong>Experience:</strong> 5 Years</p>
+            <p><strong>About:</strong> Passionate artist creating modern digital illustrations and concept art.</p>
+        </div>
+    </div>
+
+</body>
+</html>

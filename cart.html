@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h2 style="display:flex; align-items:center; gap:8px;">
+  <img src="logo.png" style="height:30px;">
+  Jabin Arts
+</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+  </nav>
+</header>
+
+<div class="cart-container">
+
+  <h1>Your Cart</h1>
+
+  <!-- Cart Items -->
+  <div id="cartItems"></div>
+
+  <!-- Cart Summary -->
+  <div class="cart-summary">
+    <h2>Total: ₹<span id="totalPrice">0</span></h2>
+    
+    <!-- ✅ FIXED BUTTON -->
+    <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
