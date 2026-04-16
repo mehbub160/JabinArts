@@ -152,7 +152,7 @@ function sendToWhatsApp(method, txnId = "") {
     message += `📸 Screenshot will be sent manually\n`;
   }
 
-  const url = `https://wa.me/918000041198?text=${encodeURIComponent(message)}`;
+  const url = `https://wa.me/918638527602?text=${encodeURIComponent(message)}`;
 
   window.location.href = url;
 }
