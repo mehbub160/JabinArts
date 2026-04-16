@@ -102,7 +102,7 @@ function confirmPayment() {
   clearInterval(paymentTimer);
   paymentTimer = null;
 
-  let txnId = prompt("Enter UPI Transaction ID:");
+  let txnId = prompt("Enter UPI Transaction UTR ID:");
 
   if (!txnId) {
     alert("Transaction ID is required!");
