@@ -1,93 +1,420 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <title>Jabin Arts</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="logo.png">
-<link rel="shortcut icon" href="logo.png">
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jabin Arts — Sacred Calligraphy &amp; Devotional Fine Art</title>
+<meta name="description" content="Original Islamic calligraphy and devotional fine art by Jabin — Qur'anic verses illuminated in gold, bloom and lapis. Shop originals or commission your own.">
+<meta property="og:title" content="Jabin Arts — Sacred Calligraphy & Devotional Fine Art">
+<meta property="og:description" content="Verses illuminated in gold, bloom and lapis. Original hand-painted Islamic calligraphy.">
+<meta property="og:image" content="https://jabinarts.in/assets/img/mosque-opening-hd.jpg">
+<meta property="og:url" content="https://jabinarts.in/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f7f0e0">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23f7f0e0"/><path d="M32 12c1.5 6-9 9-9 20 0 8 4.5 13 9 13s9-5 9-13c0-11-10.5-14-9-20z" fill="none" stroke="%238a651a" stroke-width="2.6"/><circle cx="32" cy="50" r="2.4" fill="%238a651a"/></svg>'>
+<script>try{var t=localStorage.getItem("ja-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Amiri+Quran&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=10">
+<noscript><style>.loader{display:none}.world{display:none}</style></noscript>
 </head>
-<body>
+<body data-page="home">
 
-<!-- 🔝 NAVBAR -->
-<header>
-  
-<h2 style="display:flex; align-items:center; gap:8px;">
-  <img src="logo.png" style="height:30px;">
-  Jabin Arts
-</h2>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="cart.html">
-  🛒 <span id="cartCount">0</span>
-</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <a href="contact.html">Contact</a>
-    <a href="Artist.html">The Artist</a>
-    
-  </nav>
-</header>
-
-<!-- 🎨 HERO SECTION -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Discover Original Art</h1>
-    <p>Buy unique paintings, sculptures & photography</p>
-    
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__seal">
+    <span class="loader__pulse" aria-hidden="true"></span>
+    <span class="loader__aura" aria-hidden="true"></span>
+    <svg class="loader__geo" viewBox="0 0 200 200" aria-hidden="true">
+      <circle class="loader__track" cx="100" cy="100" r="92"/>
+      <circle class="loader__ring" cx="100" cy="100" r="92" pathLength="100"/>
+      <circle class="loader__orbit" cx="100" cy="100" r="81"/>
+      <circle class="loader__spark" cx="100" cy="19" r="3"/>
+      <rect class="loader__sq loader__sq--a" x="41" y="41" width="118" height="118"/>
+      <rect class="loader__sq loader__sq--b" x="41" y="41" width="118" height="118"/>
+      <path class="loader__dome" d="M100 57c2.8 10.5-17 15.5-17 34.5 0 14 8 22.5 17 22.5s17-8.5 17-22.5c0-19-19.8-24-17-34.5z"/>
+      <line class="loader__base" x1="74" y1="121" x2="126" y2="121"/>
+      <circle class="loader__dot" cx="100" cy="121" r="2.4"/>
+    </svg>
   </div>
-</section>
-
-<!-- 🔘 FILTER BUTTONS -->
-<div class="filters">
-  <button class="active" data-category="All">All</button>
-  <button data-category="Painting">Paintings</button>
-  <button data-category="Arts">Arts</button>
-  <button data-category="Photography">Photography</button>
+  <p class="loader__word">JABIN&nbsp;ARTS</p>
+  <p class="loader__sub">sacred calligraphy · painted by hand</p>
+  <p class="loader__pct"><span id="loadPct">0</span><i>%</i></p>
 </div>
 
-<!-- 🖼️ PRODUCT GALLERY -->
-<section class="gallery" id="gallery"></section>
+<div class="curtain" aria-hidden="true"></div>
+<div class="world" id="world" aria-hidden="true"></div>
 
-<!-- 📖 INFO SECTIONS -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="index.html" data-nav>Jabin<span>Arts</span></a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="index.html" data-nav aria-current="page">Home</a>
+    <a href="shop.html" data-nav>Shop</a>
+    <a href="commissions.html" data-nav>Commissions</a>
+  </nav>
+  <button class="theme-btn" id="themeBtn" aria-label="Switch to night theme">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.6"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+  </button>
+  <button class="nav__burger" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span>
+  </button>
+</header>
 
-<section class="info-section">
-  <div class="info-text">
-    <h2>Support Artists</h2>
-    <p>Every purchase directly supports independent artists and helps them continue creating amazing work.</p>
-  </div>
-  <div class="info-image">
-    <img src="art4.jpg" alt="Artist Work">
-  </div>
-</section>
+<nav class="menu" id="menu" aria-hidden="true" aria-label="Menu">
+  <div class="menu__bg"></div>
+  <ul class="menu__list">
+    <li><a href="index.html" data-nav aria-current="page">Home</a></li>
+    <li><a href="shop.html" data-nav>Shop</a></li>
+    <li><a href="commissions.html" data-nav>Commissions</a></li>
+    <li><a href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener">Instagram ↗</a></li>
+    <li><a href="https://www.youtube.com/results?search_query=Jabin+Arts+The+Temporal+World+Islamic+Painting" target="_blank" rel="noopener">YouTube ↗</a></li>
+  </ul>
+  <p class="menu__foot">@jabin_arts__ · India → the world</p>
+</nav>
 
-<section class="info-section reverse">
-  <div class="info-text">
-    <h2>Exclusive Collection</h2>
-    <p>Discover limited edition artworks that are rare and valuable for collectors.</p>
-  </div>
-  <div class="info-image">
-    <img src="art5.jpg" alt="Exclusive Art">
-  </div>
-</section>
+<main id="main">
 
-<section class="info-section">
-  <div class="info-text">
-    <h2>Decor Your Space</h2>
-    <p>Enhance your home or office with unique and creative artworks.</p>
-  </div>
-  <div class="info-image">
-    <img src="art6.jpg" alt="Home Decor">
-  </div>
-</section>
+  <!-- ═══════ HERO — the mosque & the paintings ═══════ -->
+  <section class="hero" id="top">
+    <div class="hero__visual" aria-hidden="false">
+      <picture>
+        <source media="(max-width: 700px)" srcset="assets/img/mosque-opening.jpg">
+        <img id="heroVisual" src="assets/img/mosque-opening-hd.jpg" width="1672" height="941" alt="Two Jabin Arts paintings installed between luminous arches inside a mosque prayer hall" fetchpriority="high" decoding="async">
+      </picture>
+      <img class="patch patch--l" src="assets/img/mosque-art-left.jpg" width="140" height="190" alt="" aria-hidden="true">
+      <img class="patch patch--r" src="assets/img/mosque-art-right.jpg" width="140" height="190" alt="" aria-hidden="true">
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="hero__rays" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__bismillah" lang="ar" dir="rtl" role="img" aria-label="Bismillah ir-Rahman ir-Raheem — In the name of God, the Most Gracious, the Most Merciful">﷽</p>
+      <h1 class="hero__title">
+        <span class="row"><span>Where devotion</span></span>
+        <span class="row"><span><em>becomes form.</em></span></span>
+      </h1>
+      <p class="hero__sub">Jabin Arts — original Islamic calligraphy painted by hand.
+        Qur&rsquo;anic verse illuminated in gold, bloom and lapis.</p>
+      <div class="hero__cta">
+        <a class="btn btn--light" href="shop.html" data-nav>Explore the paintings</a>
+        <a class="hero__alt" href="commissions.html" data-nav>Commission a piece ↗</a>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true"><span></span>enter</div>
+  </section>
 
-<!-- 🔻 FOOTER (NEW - PROFESSIONAL TOUCH) -->
-<footer>
-  <p>© 2026 Art Marketplace | All Rights Reserved</p>
-</footer>
+  <!-- ═══════ INTRO ═══════ -->
+  <section class="intro veil">
+    <div class="wrap">
+      <p id="introText">Some paintings decorate. These <i>remember</i>. Jabin paints sacred verse
+      into gardens of lilies, roses and turning light — so a wall becomes a <i>window</i>.</p>
+    </div>
+  </section>
 
-<!-- ⚙️ JS FILE -->
-<script src="script.js"></script>
+  <!-- ═══════ THE JOURNEY — the world takes over ═══════ -->
+  <section class="journey" id="journey" aria-label="An illustrated journey">
+    <div class="journey__pin">
+      <div class="jscenes" aria-hidden="true">
+        <div class="jsc" data-jsc="0">
+          <img src="assets/journey/mosque.jpg" srcset="assets/journey/mosque-sm.jpg 900w, assets/journey/mosque.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+          <img class="n" src="assets/journey/mosque-night.jpg" srcset="assets/journey/mosque-night-sm.jpg 900w, assets/journey/mosque-night.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="jsc" data-jsc="1">
+          <img src="assets/journey/dunes.jpg" srcset="assets/journey/dunes-sm.jpg 900w, assets/journey/dunes.jpg 1920w" sizes="100vw" width="1920" height="986" alt="" loading="lazy" decoding="async">
+          <img class="n" src="assets/journey/dunes-night.jpg" srcset="assets/journey/dunes-night-sm.jpg 900w, assets/journey/dunes-night.jpg 1920w" sizes="100vw" width="1920" height="986" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="jsc" data-jsc="2">
+          <img src="assets/journey/oasis.jpg" srcset="assets/journey/oasis-sm.jpg 900w, assets/journey/oasis.jpg 1920w" sizes="100vw" width="1920" height="826" alt="" loading="lazy" decoding="async">
+          <img class="n" src="assets/journey/oasis-night.jpg" srcset="assets/journey/oasis-night-sm.jpg 900w, assets/journey/oasis-night.jpg 1920w" sizes="100vw" width="1920" height="826" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="jsc" data-jsc="3">
+          <img src="assets/journey/home.jpg" srcset="assets/journey/home-sm.jpg 900w, assets/journey/home.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+          <img class="n" src="assets/journey/home-night.jpg" srcset="assets/journey/home-night-sm.jpg 900w, assets/journey/home-night.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="jwipe" aria-hidden="true"></div>
+      <div class="journey__cap" data-jcap="0">
+        <span class="n">i</span>
+        <h3>It begins at the mosque</h3>
+        <p>Where the words live — in stone, in light, in memory.</p>
+      </div>
+      <div class="journey__cap" data-jcap="1">
+        <span class="n">ii</span>
+        <h3>Across the dunes</h3>
+        <p>Patience is the true medium. Every verse travels slowly.</p>
+      </div>
+      <div class="journey__cap" data-jcap="2">
+        <span class="n">iii</span>
+        <h3>Past the oasis</h3>
+        <p>Where color drinks the light — turquoise, lapis, leaf of gold.</p>
+      </div>
+      <div class="journey__cap" data-jcap="3">
+        <span class="n">iv</span>
+        <h3>And home to your walls</h3>
+        <p>A painting is the journey&rsquo;s last step — and yours begins here.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════ FEATURED ═══════ -->
+  <section class="sect veil" id="featured">
+    <div class="wrap">
+      <header data-rise>
+        <p class="eyebrow">Selected works</p>
+        <h2 class="display">Verses in <i>bloom &amp; gold</i></h2>
+      </header>
+    </div>
+    <div class="wrap" style="margin-top:clamp(50px,9vh,110px)">
+
+      <article class="feat feat--r feat--soft">
+        <div class="feat__media" data-rise>
+          <img src="assets/img/lilies-face.jpg" width="1500" height="950" sizes="(max-width:899px) 92vw, 54vw" alt="Gold calligraphy of Qur'an 28:24 across royal-blue canvas above raised white lilies and forget-me-nots" loading="lazy" decoding="async">
+        </div>
+        <span class="feat__num" aria-hidden="true">01</span>
+        <div class="feat__meta" data-rise>
+          <h3>Whatever Good You Send</h3>
+          <p class="feat__verse">Qur&rsquo;an 28:24 · <em>&ldquo;My Lord, I am in need of whatever good You send down to me.&rdquo;</em></p>
+          <p class="feat__spec">Gouache &amp; gold on canvas — lilies beneath a verse of quiet dependence.</p>
+        </div>
+      </article>
+
+      <article class="feat feat--l feat--arch">
+        <div class="feat__media" data-rise>
+          <img src="assets/img/teal-piece.jpg" srcset="assets/img/teal-piece-sm.jpg 525w, assets/img/teal-piece.jpg 960w" sizes="(max-width:899px) 88vw, 42vw" width="960" height="1280" alt="Ayat al-Kursi in black thuluth over a turquoise wash with gold veining, in a white frame" loading="lazy" decoding="async">
+        </div>
+        <span class="feat__num" aria-hidden="true">02</span>
+        <div class="feat__meta" data-rise>
+          <h3>Al-Kursi — Turquoise Tide</h3>
+          <p class="feat__verse">The Throne Verse · thuluth roundel</p>
+          <p class="feat__spec">Ink over a sea-glass wash, veined with gold.</p>
+        </div>
+      </article>
+
+      <article class="feat feat--r feat--frame">
+        <div class="feat__media" data-rise>
+          <img src="assets/img/rose-kursi-front.jpg" srcset="assets/img/rose-kursi-front-sm.jpg 660w, assets/img/rose-kursi-front.jpg 1207w" sizes="(max-width:899px) 88vw, 46vw" width="1207" height="1280" alt="Gilded calligraphy on black surrounded by deep red roses, in an ornate gold frame" loading="lazy" decoding="async">
+        </div>
+        <span class="feat__num" aria-hidden="true">03</span>
+        <div class="feat__meta" data-rise>
+          <h3>Midnight &amp; Roses</h3>
+          <p class="feat__verse">Ayat al-Kursi · gilded on black</p>
+          <p class="feat__spec">White and gold script rising from a garden of roses.</p>
+        </div>
+      </article>
+
+      <div style="text-align:center" data-rise>
+        <a class="btn btn--line" href="shop.html" data-nav>See the full collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 3D — ANATOMY OF A PAINTING ═══════ -->
+  <section class="exploded" id="anatomy" aria-label="Anatomy of a painting">
+    <div class="exploded__pin">
+      <div class="exploded__stage">
+        <div class="p3d" id="p3d">
+          <div class="p3d__shadow" aria-hidden="true"></div>
+          <div class="p3d__back" aria-hidden="true"></div>
+          <div class="p3d__art"><img src="assets/img/lilies-face.jpg" width="1500" height="950" alt="The painting 'Whatever Good You Send' — gold calligraphy and white lilies on lapis" loading="lazy" decoding="async"></div>
+          <div class="p3d__glass" aria-hidden="true"></div>
+          <div class="p3d__frame" aria-hidden="true"></div>
+          <div class="p3d__detail" aria-hidden="true"><img src="assets/img/lilies-detail.jpg" width="1400" height="1050" alt="" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+      <div class="exploded__caps" aria-hidden="true">
+        <p class="exploded__cap" data-xcap="0"><b>Anatomy of a painting</b>One verse, painted in layers.</p>
+        <p class="exploded__cap" data-xcap="1"><b>Canvas · gold · glass · frame</b>Each layer is worked by hand.</p>
+        <p class="exploded__cap" data-xcap="2"><b>Whatever Good You Send</b>gouache &amp; gold on canvas</p>
+      </div>
+      <div class="exploded__link" id="explodedLink">
+        <a class="btn btn--solid" href="shop.html" data-nav>View it in the shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ WHERE THE WORK LIVES ═══════ -->
+  <section class="sect veil">
+    <div class="wrap artist">
+      <figure class="artist__media" data-rise>
+        <img src="assets/img/pillar-dusk.jpg" srcset="assets/img/pillar-dusk-sm.jpg 525w, assets/img/pillar-dusk.jpg 960w" sizes="(max-width:899px) 88vw, 40vw" width="960" height="1280" alt="A Jabin Arts calligraphy panel glowing beside a lantern on a mosque pillar at dusk" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow" data-rise>Where the work lives</p>
+        <p class="artist__quote" data-rise>Painted for prayer halls and living rooms alike —
+          each piece is made to hold <i>light</i>, and to return it.</p>
+        <p class="artist__by" data-rise>Jabin · calligrapher &amp; painter</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FROM THE STUDIO — CINEMA ═══════ -->
+  <section class="sect cinema" id="studio">
+    <div class="cinema__bed" aria-hidden="true"></div>
+    <div class="wrap">
+      <header data-rise>
+        <p class="eyebrow">From the studio</p>
+        <h2 class="display display--sm">Wet ink, <i>moving light</i></h2>
+      </header>
+    </div>
+    <div class="wrap vgal" style="margin-top:clamp(36px,6vh,70px)">
+      <figure class="vwrap vgal__main" id="vgalMain" data-rise>
+        <video id="vMain" src="assets/video/process-1.mp4" poster="assets/video/process-1-poster.jpg" muted loop playsinline preload="none" width="478" height="850" aria-label="Studio film"></video>
+        <button class="vplay" data-video="vMain" aria-label="Play video"></button>
+        <figcaption id="vCap">wet ink &amp; raised gold, up close</figcaption>
+      </figure>
+      <div class="vgal__side" id="vgalSide" data-rise>
+        <button class="vthumb" type="button" data-clip="1">
+          <img src="assets/video/studio-feature-poster.jpg" width="478" height="850" alt="" loading="lazy" decoding="async">
+          <span>ayat al-kursi · gold on white</span>
+        </button>
+        <button class="vthumb" type="button" data-clip="2">
+          <img src="assets/video/process-2-poster.jpg" width="478" height="850" alt="" loading="lazy" decoding="async">
+          <span>the 99 names</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ YOUTUBE — THE FIRST MASTERPIECE ═══════ -->
+  <section class="sect yt" id="channel">
+    <div class="wrap yt__wrap">
+      <figure class="vwrap yt__player" data-rise>
+        <video id="ytFeature" src="assets/video/temporal-world.mp4" poster="assets/video/temporal-world-poster.jpg" playsinline preload="none" width="1280" height="720" aria-label="Jabin presents her first painting, The Temporal World — a reflection on life's impermanence and faith"></video>
+        <button class="vplay" data-video="ytFeature" aria-label="Play: The Temporal World"></button>
+        <figcaption>&ldquo;The Temporal World&rdquo; — presented by the artist, in her own words</figcaption>
+      </figure>
+      <div class="yt__panel" data-rise>
+        <div class="ig__id">
+          <span class="yt__avatar"><img src="assets/img/rose-kursi-front-sm.jpg" width="64" height="64" alt="" loading="lazy" decoding="async"></span>
+          <div>
+            <p class="ig__handle">Jabin Arts on YouTube</p>
+            <p class="ig__tag">painting films &amp; studio stories</p>
+          </div>
+        </div>
+        <h2 class="display display--sm">Watch the <i>story</i></h2>
+        <p class="lead" style="margin-top:14px">&ldquo;My journey as an artist begins here.&rdquo;
+          Jabin presents her first masterpiece, <em>The Temporal World</em> — an exploration of
+          life&rsquo;s transience and the eternal truth beyond it, told over the finished canvas.</p>
+        <ul class="ig__chips">
+          <li>Painting films</li><li>Behind the canvas</li><li>In her own words</li>
+        </ul>
+        <div class="ig__cta">
+          <a class="btn btn--yt" href="https://www.youtube.com/results?search_query=Jabin+Arts+The+Temporal+World+Islamic+Painting" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.3V8.7L15.9 12z"/></svg>
+            Subscribe on YouTube</a>
+          <a class="ig__alt" href="#studio">more studio reels ↑</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ PATHS ═══════ -->
+  <section class="sect veil">
+    <div class="wrap paths">
+      <a class="path" href="shop.html" data-nav data-rise>
+        <img src="assets/img/kursi-bloom.jpg" srcset="assets/img/kursi-bloom-sm.jpg 608w, assets/img/kursi-bloom.jpg 1120w" sizes="(max-width:759px) 92vw, 46vw" width="1120" height="1400" alt="" loading="lazy" decoding="async">
+        <h3>The Shop</h3>
+        <p>Original paintings, ready to travel — each one of one.</p>
+        <span>Browse originals</span>
+      </a>
+      <a class="path" href="commissions.html" data-nav data-rise>
+        <img src="assets/img/easel-blackgold.jpg" srcset="assets/img/easel-blackgold-sm.jpg 659w, assets/img/easel-blackgold.jpg 1170w" sizes="(max-width:759px) 92vw, 46vw" width="1170" height="1242" alt="" loading="lazy" decoding="async">
+        <h3>Commissions</h3>
+        <p>A verse written for your walls — weddings, homes, gifts of remembrance.</p>
+        <span>Begin a commission</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════ INSTAGRAM — FOLLOW THE BRUSH ═══════ -->
+  <section class="sect ig" id="connect">
+    <div class="wrap ig__wrap">
+      <div class="ig__panel" data-rise>
+        <div class="ig__id">
+          <span class="ig__avatar"><img src="assets/img/teal-piece-sm.jpg" width="64" height="64" alt="" loading="lazy" decoding="async"></span>
+          <div>
+            <p class="ig__handle">@jabin_arts__</p>
+            <p class="ig__tag">studio posts, reels &amp; new drops</p>
+          </div>
+        </div>
+        <h2 class="display display--sm">Follow the <i>brush</i></h2>
+        <p class="lead" style="margin-top:14px">New work reaches Instagram first — wet-ink close-ups,
+          process reels, and finished pieces before they are framed.</p>
+        <ul class="ig__chips">
+          <li>New drops first</li><li>Studio reels</li><li>Work in progress</li>
+        </ul>
+        <div class="ig__cta">
+          <a class="btn btn--ig" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+            Follow @jabin_arts__</a>
+          <a class="ig__alt" href="https://ig.me/m/jabin_arts__" target="_blank" rel="noopener">DM to commission ↗</a>
+        </div>
+        <p class="ig__mail">or write to <a href="mailto:jabinakhterb@gmail.com">jabinakhterb@gmail.com</a>
+          · earlier works at <a href="https://jabinarts.in" target="_blank" rel="noopener">jabinarts.in</a></p>
+      </div>
+
+      <div class="ig__grid" id="igGrid">
+        <a class="ig__tile" data-depth=".7" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: lilies on lapis">
+          <img src="assets/img/lilies-face.jpg" width="1500" height="950" sizes="(max-width:899px) 30vw, 18vw" alt="Gold calligraphy and white lilies on lapis blue" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth="1.2" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: turquoise Ayat al-Kursi">
+          <img src="assets/img/teal-piece-sm.jpg" width="525" height="700" sizes="(max-width:899px) 30vw, 18vw" alt="Turquoise Ayat al-Kursi in a white frame" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth=".9" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: gilded roses on black">
+          <img src="assets/img/rose-kursi-front-sm.jpg" width="660" height="700" sizes="(max-width:899px) 30vw, 18vw" alt="Gilded calligraphy among red roses in a gold frame" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth="1.4" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: emerald Throne Verse">
+          <img src="assets/img/kursi-emerald-sm.jpg" width="570" height="760" sizes="(max-width:899px) 30vw, 18vw" alt="Ayat al-Kursi in white and gold on sea green" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile ig__tile--video" data-depth=".6" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: studio reel">
+          <video src="assets/video/process-1.mp4" poster="assets/video/process-1-poster.jpg" muted loop playsinline preload="metadata" width="478" height="850"></video>
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></a>
+        <a class="ig__tile" data-depth="1.1" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: lilac Ayat al-Kursi">
+          <img src="assets/img/lilac-piece-sm.jpg" width="525" height="700" sizes="(max-width:899px) 30vw, 18vw" alt="Lilac Ayat al-Kursi with violet blossoms" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth="1.3" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: Dhikr vortex">
+          <img src="assets/img/dhikr-vortex-sm.jpg" width="760" height="569" sizes="(max-width:899px) 30vw, 18vw" alt="Swirling blue vortex with silver calligraphy at the center" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth=".8" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: the Illuminated Dome">
+          <img src="assets/img/illuminated-dome-sm.jpg" width="527" height="760" sizes="(max-width:899px) 30vw, 18vw" alt="White calligraphy in the shape of a dome on royal blue" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+        <a class="ig__tile" data-depth="1" href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener" aria-label="Open Instagram: silver and gold on black">
+          <img src="assets/img/easel-blackgold-sm.jpg" width="659" height="700" sizes="(max-width:899px) 30vw, 18vw" alt="Silver and gold calligraphy on black, on an easel" loading="lazy" decoding="async">
+          <svg class="ig__io" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.9-9.6-9A5.4 5.4 0 0 1 12 6.4 5.4 5.4 0 0 1 21.6 12c-2.1 4.1-9.6 9-9.6 9z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="foot">
+    <p class="foot__line">All works are original &amp; hand-painted.</p>
+    <div class="foot__row">
+      <span>© 2026 Jabin Arts</span>
+      <span class="foot__dot">✦</span>
+      <a href="shop.html" data-nav>Shop</a>
+      <span class="foot__dot">✦</span>
+      <a href="commissions.html" data-nav>Commissions</a>
+      <span class="foot__dot">✦</span>
+      <a href="https://www.instagram.com/jabin_arts__" target="_blank" rel="noopener">Instagram</a>
+      <span class="foot__dot">✦</span>
+      <a href="https://www.youtube.com/results?search_query=Jabin+Arts+The+Temporal+World+Islamic+Painting" target="_blank" rel="noopener">YouTube</a>
+      <span class="foot__dot">✦</span>
+      <a href="mailto:jabinakhterb@gmail.com">Email</a>
+    </div>
+    <p class="foot__credit">crafted with devotion</p>
+  </footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="js/products.js?v=10" defer></script>
+<script src="js/cart.js?v=10" defer></script>
+<script src="js/world.js?v=10" defer></script>
+<script src="js/main.js?v=10" defer></script>
 </body>
 </html>
