@@ -252,15 +252,7 @@
     });
   }
 
-  /* nav hide/show */
-  var nav = document.getElementById("nav");
-  ScrollTrigger.create({
-    start: 140, end: "max",
-    onUpdate: function (self) {
-      nav.classList.toggle("is-hidden",
-        self.direction === 1 && self.scroll() > 320 && !document.body.classList.contains("menu-open"));
-    }
-  });
+  /* nav stays fixed and always visible while scrolling */
 
   /* generic rises */
   gsap.utils.toArray("[data-rise]").forEach(function (el) {

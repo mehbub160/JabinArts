@@ -11,12 +11,12 @@
 <meta property="og:url" content="https://jabinarts.in/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f7f0e0">
-<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23f7f0e0"/><path d="M32 12c1.5 6-9 9-9 20 0 8 4.5 13 9 13s9-5 9-13c0-11-10.5-14-9-20z" fill="none" stroke="%238a651a" stroke-width="2.6"/><circle cx="32" cy="50" r="2.4" fill="%238a651a"/></svg>'>
-<script>try{var t=localStorage.getItem("ja-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="icon" type="image/png" href="assets/img/brand/mark.png">
+<script>try{var t=localStorage.getItem("ja-theme")||"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Amiri+Quran&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=10">
+<link rel="stylesheet" href="css/style.css?v=14">
 <noscript><style>.loader{display:none}.world{display:none}</style></noscript>
 </head>
 <body data-page="home">
@@ -25,22 +25,10 @@
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__seal">
-    <span class="loader__pulse" aria-hidden="true"></span>
     <span class="loader__aura" aria-hidden="true"></span>
-    <svg class="loader__geo" viewBox="0 0 200 200" aria-hidden="true">
-      <circle class="loader__track" cx="100" cy="100" r="92"/>
-      <circle class="loader__ring" cx="100" cy="100" r="92" pathLength="100"/>
-      <circle class="loader__orbit" cx="100" cy="100" r="81"/>
-      <circle class="loader__spark" cx="100" cy="19" r="3"/>
-      <rect class="loader__sq loader__sq--a" x="41" y="41" width="118" height="118"/>
-      <rect class="loader__sq loader__sq--b" x="41" y="41" width="118" height="118"/>
-      <path class="loader__dome" d="M100 57c2.8 10.5-17 15.5-17 34.5 0 14 8 22.5 17 22.5s17-8.5 17-22.5c0-19-19.8-24-17-34.5z"/>
-      <line class="loader__base" x1="74" y1="121" x2="126" y2="121"/>
-      <circle class="loader__dot" cx="100" cy="121" r="2.4"/>
-    </svg>
+    <span class="loader__beam" aria-hidden="true"></span>
+    <img class="loader__logo" src="assets/img/brand/mark.png" width="256" height="240" alt="Jabin Arts">
   </div>
-  <p class="loader__word">JABIN&nbsp;ARTS</p>
-  <p class="loader__sub">sacred calligraphy · painted by hand</p>
   <p class="loader__pct"><span id="loadPct">0</span><i>%</i></p>
 </div>
 
@@ -48,7 +36,9 @@
 <div class="world" id="world" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
-  <a class="nav__logo" href="index.html" data-nav>Jabin<span>Arts</span></a>
+  <a class="nav__logo" href="index.html" data-nav aria-label="Jabin Arts — home">
+    <img class="logo-mark" src="assets/img/brand/mark.png" width="256" height="240" alt="" aria-hidden="true">
+    <span class="nav__logo-text">Jabin<span>Arts</span></span></a>
   <nav class="nav__links" aria-label="Primary">
     <a href="index.html" data-nav aria-current="page">Home</a>
     <a href="shop.html" data-nav>Shop</a>
@@ -234,17 +224,29 @@
     </div>
   </section>
 
-  <!-- ═══════ WHERE THE WORK LIVES ═══════ -->
-  <section class="sect veil">
-    <div class="wrap artist">
-      <figure class="artist__media" data-rise>
-        <img src="assets/img/pillar-dusk.jpg" srcset="assets/img/pillar-dusk-sm.jpg 525w, assets/img/pillar-dusk.jpg 960w" sizes="(max-width:899px) 88vw, 40vw" width="960" height="1280" alt="A Jabin Arts calligraphy panel glowing beside a lantern on a mosque pillar at dusk" loading="lazy" decoding="async">
+  <!-- ═══════ ABOUT THE ARTIST ═══════ -->
+  <section class="sect veil about" id="about">
+    <div class="wrap about__wrap">
+      <figure class="about__media" data-rise>
+        <span class="about__ring" aria-hidden="true"></span>
+        <img src="assets/img/artist-photo.jpg" width="1050" height="1400" alt="Jabin Akhter Borah seated before the white arcades of a mosque at dusk, in a teal abaya and black hijab" loading="lazy" decoding="async">
+        <span class="about__gem about__gem--1" aria-hidden="true">✦</span>
+        <span class="about__gem about__gem--2" aria-hidden="true">✿</span>
       </figure>
-      <div>
-        <p class="eyebrow" data-rise>Where the work lives</p>
-        <p class="artist__quote" data-rise>Painted for prayer halls and living rooms alike —
-          each piece is made to hold <i>light</i>, and to return it.</p>
-        <p class="artist__by" data-rise>Jabin · calligrapher &amp; painter</p>
+      <div class="about__body">
+        <p class="eyebrow" data-rise>About the artist</p>
+        <h2 class="display display--sm">Assalamu alaikum —<br><i>I&rsquo;m Jabin Akhter Borah.</i></h2>
+        <p class="lead" data-rise style="margin-top:16px">Welcome to my journey through art — a place
+          where every painting carries a story of faith, beauty and feeling.</p>
+        <p class="about__p" data-rise>I paint what draws the heart toward its Creator: verses of the
+          Qur&rsquo;an, the quiet of nature, and the emotions that bind them together. My work weaves
+          traditional Arabic calligraphy with contemporary texture, florals and modern design.</p>
+        <p class="about__p" data-rise>Art has never been only a passion — it is how I remember, and how
+          I give thanks. Whether you are drawn to an original painting, a personalised commission, or
+          simply a piece that brings peace into your home, I&rsquo;m honoured to share this journey with you.</p>
+        <p class="about__p about__p--soft" data-rise>Thank you for visiting, and for supporting handmade
+          art. May these works carry beauty, blessing, and a reminder of Allah&rsquo;s mercy into your life.</p>
+        <p class="about__sig" data-rise>— Jabin Akhter Borah <span>✿</span></p>
       </div>
     </div>
   </section>
@@ -412,9 +414,9 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
-<script src="js/products.js?v=10" defer></script>
-<script src="js/cart.js?v=10" defer></script>
-<script src="js/world.js?v=10" defer></script>
-<script src="js/main.js?v=10" defer></script>
+<script src="js/products.js?v=14" defer></script>
+<script src="js/cart.js?v=14" defer></script>
+<script src="js/world.js?v=14" defer></script>
+<script src="js/main.js?v=14" defer></script>
 </body>
 </html>

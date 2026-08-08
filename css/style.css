@@ -999,3 +999,144 @@ html.has-cursor .cur{display:block}
 .btn--yt{background:linear-gradient(100deg,#e52d27,#c4302b);color:#fff;
   box-shadow:0 12px 30px -10px rgba(229,45,39,.45)}
 .btn--yt:hover{box-shadow:0 16px 40px -10px rgba(229,45,39,.58)}
+
+/* ═════════ v11 — brand mark, about, pdp, discounts, footer fix ═════════ */
+
+/* brand emblem */
+.logo-mark{width:40px;height:40px;flex:none}
+.lm-frame{stroke:var(--gold-hi);stroke-width:2.6}
+.lm-gem{fill:var(--gold-hi)}
+.lm-red{fill:#a8332e}
+:root[data-theme="dark"] .lm-red{fill:#c8443d}
+.nav__logo{display:flex;align-items:center;gap:11px}
+.nav__logo-text span{color:var(--gold)}
+
+/* loader emblem choreography */
+.loader__emblem .lm-frame{stroke-dasharray:340;stroke-dashoffset:340;
+  animation:domeDraw 1.4s var(--ease) .15s forwards}
+.loader__emblem .lm-draw{opacity:0;transform:scale(.86);transform-origin:60px 60px;
+  animation:emblemIn .9s var(--ease) .7s forwards}
+.loader__emblem .lm-draw:nth-of-type(2){animation-delay:.9s}
+.loader__emblem .lm-pop{opacity:0;animation:emblemIn .5s var(--ease) 1.5s forwards}
+.loader__emblem .lm-gem{opacity:0;animation:emblemIn .6s var(--ease) 1.3s forwards}
+@keyframes emblemIn{to{opacity:1;transform:scale(1)}}
+
+/* ── about the artist ── */
+.about__wrap{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+  gap:clamp(30px,5vw,84px);align-items:center}
+@media (max-width:899px){.about__wrap{grid-template-columns:1fr;max-width:560px;margin-inline:auto}}
+.about__media{position:relative;justify-self:center;width:min(100%,380px)}
+.about__media img{width:100%;height:auto;border-radius:46% 46% 40% 40%/38% 38% 30% 30%;
+  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;z-index:1}
+.about__ring{position:absolute;inset:-7%;border-radius:50%;pointer-events:none;
+  border:1.5px dashed color-mix(in srgb,var(--gold-hi) 65%,transparent);
+  animation:orbitSpin 26s linear infinite}
+.about__gem{position:absolute;color:var(--gold-hi);font-size:20px;z-index:2;
+  animation:gemFloat 5.5s ease-in-out infinite}
+.about__gem--1{top:4%;right:-4%}
+.about__gem--2{bottom:6%;left:-6%;animation-delay:2.2s;color:var(--terra)}
+@keyframes gemFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.about__p{margin-top:14px;font-size:clamp(14px,1.55vw,16px);color:var(--ink-soft);max-width:60ch}
+.about__p--soft{color:var(--ink-mute)}
+.about__sig{margin-top:22px;font-family:var(--serif);font-style:italic;
+  font-size:clamp(19px,2vw,24px);color:var(--gold)}
+.about__sig span{color:var(--terra);font-style:normal}
+
+/* ── promo ribbon (shop) ── */
+.promo{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:center;
+  margin:clamp(6px,1vh,14px) auto clamp(26px,4vh,44px);padding:14px 22px;border-radius:60px;
+  border:1px dashed color-mix(in srgb,var(--gold-hi) 55%,transparent);
+  background:color-mix(in srgb,var(--gold-hi) 9%,transparent);
+  font-size:13.5px;color:var(--ink-soft);text-align:center}
+.promo b{color:var(--ink);font-weight:500}
+.promo__tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(120deg,var(--terra),#c8443d);padding:6px 12px;border-radius:40px}
+
+/* ── discount price styling ── */
+[data-price] s,.pdp__price s{color:var(--ink-mute);font-weight:300;margin-right:6px;font-size:.85em}
+[data-price] b,.pdp__price b{font-weight:500;color:var(--ink)}
+.off{display:inline-block;font-style:normal;font-size:10px;letter-spacing:.08em;font-weight:500;
+  color:#fff;background:linear-gradient(120deg,#2c8c4f,#25a05a);border-radius:30px;
+  padding:2.5px 8px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.piece__media,.rp__media{cursor:zoom-in}
+
+/* ── product detail quick view ── */
+.pdp{position:fixed;inset:0;z-index:97;display:grid;place-items:center;padding:4vh 16px;
+  visibility:hidden;opacity:0;transition:opacity .4s var(--ease),visibility 0s .4s}
+.pdp.is-open{visibility:visible;opacity:1;transition-delay:0s}
+.pdp__bg{position:absolute;inset:0;background:color-mix(in srgb,var(--bg-deep) 50%,rgba(8,6,2,.55));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pdp__panel{position:relative;width:min(1080px,100%);max-height:92svh;overflow:auto;
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  background:var(--panel);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);
+  transform:translateY(24px) scale(.985);transition:transform .5s var(--ease)}
+.pdp.is-open .pdp__panel{transform:none}
+@media (max-width:859px){.pdp__panel{grid-template-columns:1fr;max-height:94svh}}
+.pdp__x{position:absolute;right:14px;top:12px;z-index:4;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;
+  transition:border-color .3s,transform .3s}
+.pdp__x:hover{border-color:var(--gold);transform:rotate(90deg)}
+.pdp__stage{position:relative;overflow:hidden;background:var(--bg-deep);
+  display:grid;place-items:center;min-height:320px;cursor:zoom-in}
+.pdp__stage img{width:100%;height:100%;max-height:92svh;object-fit:contain;
+  transition:transform .6s var(--ease)}
+.pdp__stage.is-zoomed{cursor:zoom-out}
+.pdp__stage.is-zoomed img{transform:scale(2.1)}
+.pdp__hint{position:absolute;left:14px;bottom:12px;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-mute);background:var(--panel-a);
+  padding:6px 12px;border-radius:30px;pointer-events:none}
+.pdp__info{padding:clamp(26px,3.2vw,46px)}
+.pdp__info h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,38px);
+  line-height:1.12;margin:8px 0 12px}
+.pdp__desc{font-size:14.5px;color:var(--ink-soft);max-width:52ch}
+.pdp__specs{margin:18px 0;display:grid;gap:8px}
+.pdp__specs div{display:grid;grid-template-columns:92px 1fr;gap:12px;font-size:13.5px}
+.pdp__specs dt{color:var(--ink-mute);letter-spacing:.06em}
+.pdp__specs dd{color:var(--ink-soft)}
+.pdp__price{margin:16px 0 20px;font-family:var(--serif);font-size:24px}
+.pdp__price b{font-size:30px;color:var(--gold-deep)}
+:root[data-theme="dark"] .pdp__price b{color:var(--gold-hi)}
+.pdp__row{display:flex;gap:12px;flex-wrap:wrap}
+.pdp__note{margin-top:16px;font-size:12.5px;color:var(--ink-mute);max-width:46ch}
+.pdp__note b{color:var(--gold)}
+
+/* ── footer visibility fix ── */
+.foot{background:linear-gradient(180deg,transparent 0%,
+  color-mix(in srgb,var(--bg) 78%,transparent) 18%,
+  color-mix(in srgb,var(--bg) 96%,transparent) 42%,var(--bg) 70%)}
+.foot__line{color:var(--ink);text-shadow:0 1px 14px var(--bg)}
+.foot__row{color:var(--ink-soft)}
+.foot__row a{color:var(--ink-soft)}
+.foot__credit{color:var(--ink-mute)}
+
+/* ═════════ v12 — the real brand ═════════ */
+.logo-mark{width:42px;height:40px;object-fit:contain;border-radius:9px;
+  box-shadow:0 2px 10px -2px rgba(40,20,5,.25)}
+.loader__logo{position:absolute;inset:15.5%;border-radius:22%;object-fit:cover;
+  box-shadow:0 18px 50px -18px rgba(40,20,5,.45);
+  opacity:0;transform:scale(.92);animation:logoIn 1s var(--ease) .35s forwards}
+@keyframes logoIn{to{opacity:1;transform:scale(1)}}
+.loader__pct{margin-top:26px}
+
+/* ═════════ v13 — fixed nav · beam loader ═════════ */
+.nav{transform:none !important}
+
+.loader__seal{width:clamp(118px,16vw,148px);display:grid;place-items:center}
+.loader__logo{position:relative;inset:auto;width:100%;height:auto;border-radius:22%;
+  object-fit:contain;box-shadow:0 16px 44px -14px rgba(20,10,2,.55);
+  opacity:0;transform:scale(.9);animation:logoIn .8s var(--ease) .25s forwards}
+.loader__aura{inset:-34%}
+/* the revolving beam of light */
+.loader__beam{position:absolute;inset:-8.5%;border-radius:26%;padding:2.5px;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 68%,
+    color-mix(in srgb,var(--gold-hi) 45%,transparent) 78%,
+    #fff3cf 86%,var(--gold-hi) 92%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  filter:drop-shadow(0 0 8px color-mix(in srgb,var(--gold-hi) 70%,transparent));
+  animation:beamSpin 1.7s linear infinite}
+@keyframes beamSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.loader__beam{animation:none}}
+
+/* whole card opens the painting's detail view */
+.piece,.rp{cursor:pointer}

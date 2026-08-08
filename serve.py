@@ -9,4 +9,6 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 if __name__ == "__main__":
-    http.server.test(HandlerClass=NoCacheHandler, port=4173, bind="127.0.0.1")
+    import os, sys
+    port = int(sys.argv[1] if len(sys.argv) > 1 else os.environ.get("PORT", 4173))
+    http.server.test(HandlerClass=NoCacheHandler, port=port, bind="127.0.0.1")

@@ -66,7 +66,11 @@
   var countEl = cartBtn.querySelector(".cart-count");
   var lastFocus = null;
 
+  function sale(p) { return window.JA_SALE ? window.JA_SALE(p.price) : p.price; }
   function subtotal() {
+    return items.reduce(function (s, id) { return s + (products[id] ? sale(products[id]) : 0); }, 0);
+  }
+  function mrpTotal() {
     return items.reduce(function (s, id) { return s + (products[id] ? products[id].price : 0); }, 0);
   }
 
@@ -111,7 +115,7 @@
         '<aside class="chk__side">' +
           '<h3>Your order</h3>' +
           '<ul class="chk__items"></ul>' +
-          '<div class="chk__coupon"><input type="text" id="chkCoupon" placeholder="Coupon code" aria-label="Coupon code"><button type="button" class="chk__apply">Apply</button></div>' +
+          '<div class="chk__coupon"><input type="text" id="chkCoupon" placeholder="Coupon code — try WELCOME10" aria-label="Coupon code"><button type="button" class="chk__apply">Apply</button></div>' +
           '<p class="chk__cmsg" aria-live="polite"></p>' +
           '<dl class="chk__sums">' +
             '<div><dt>Subtotal</dt><dd class="chk__sub"></dd></div>' +
@@ -201,10 +205,11 @@
     var lines = ["🛒 " + b + "New Order" + b, ""];
     items.forEach(function (id, i) {
       var p = products[id];
-      lines.push((i + 1) + ". " + p.title + " x1 = " + window.JA_FORMAT(p.price));
+      lines.push((i + 1) + ". " + p.title + " x1 = " + window.JA_FORMAT(sale(p)));
     });
-    var sub = subtotal(), disc = discountFor(sub);
+    var sub = subtotal(), disc = discountFor(sub), mrp = mrpTotal();
     lines.push("", "💰 Total: " + window.JA_FORMAT(sub));
+    if (mrp > sub) lines.push("🏷️ MRP " + window.JA_FORMAT(mrp) + " — you save " + window.JA_FORMAT(mrp - sub) + " (20% off)");
     if (disc > 0) {
       lines.push("🎟️ Coupon " + coupon.code + ": −" + window.JA_FORMAT(disc));
       lines.push("✅ Final payable: " + window.JA_FORMAT(sub - disc));
@@ -241,7 +246,7 @@
     ul.innerHTML = items.map(function (id) {
       var p = products[id];
       return '<li><img src="' + p.img + '" alt="" width="52" height="64" loading="lazy">' +
-        "<span>" + p.title + "<em>qty 1 · original</em></span><b>" + window.JA_FORMAT(p.price) + "</b></li>";
+        "<span>" + p.title + "<em>qty 1 · original</em></span><b>" + window.JA_FORMAT(sale(p)) + "</b></li>";
     }).join("");
     var sub = subtotal(), disc = discountFor(sub);
     chk.querySelector(".chk__sub").textContent = window.JA_FORMAT(sub);
@@ -276,7 +281,7 @@
       return '<li class="cartd__item">' +
         '<img src="' + p.img + '" alt="" width="64" height="80" loading="lazy">' +
         '<div><b>' + p.title + "</b><span>" + p.size + " · qty 1</span></div>" +
-        "<em>" + window.JA_FORMAT(p.price) + "</em>" +
+        "<em>" + window.JA_FORMAT(sale(p)) + "</em>" +
         '<button class="cartd__rm" data-remove="' + id + '" aria-label="Remove ' + p.title + '">✕</button>' +
       "</li>";
     }).join("");
@@ -334,17 +339,116 @@
     if (rm) window.JA_CART.remove(rm.getAttribute("data-remove"));
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") { closeCheckout(); closeCart(); }
+    if (e.key === "Escape") { closePdp(); closeCheckout(); closeCart(); }
   });
   document.addEventListener("click", function (e) {
     var add = e.target.closest("[data-add]");
     if (add) { e.preventDefault(); window.JA_CART.add(add.getAttribute("data-id")); }
   });
 
+
+  /* ═════════ PRODUCT DETAIL — quick view ═════════ */
+  var pdp = null, pdpZoomed = false;
+  function buildPdp() {
+    if (pdp) return;
+    pdp = document.createElement("div");
+    pdp.className = "pdp";
+    pdp.setAttribute("aria-hidden", "true");
+    pdp.innerHTML =
+      '<div class="pdp__bg" data-pdp-close></div>' +
+      '<div class="pdp__panel" role="dialog" aria-modal="true" aria-labelledby="pdpTitle">' +
+        '<button class="pdp__x" data-pdp-close aria-label="Close">✕</button>' +
+        '<figure class="pdp__stage"><img alt=""><span class="pdp__hint">click to zoom</span></figure>' +
+        '<div class="pdp__info">' +
+          '<p class="eyebrow">Original · one of one</p>' +
+          '<h2 id="pdpTitle"></h2>' +
+          '<p class="pdp__desc"></p>' +
+          '<dl class="pdp__specs">' +
+            '<div><dt>Size</dt><dd data-f="size"></dd></div>' +
+            '<div><dt>Materials</dt><dd data-f="materials"></dd></div>' +
+            '<div><dt>Framing</dt><dd data-f="framed"></dd></div>' +
+          "</dl>" +
+          '<div class="pdp__price"></div>' +
+          '<div class="pdp__row">' +
+            '<button class="btn btn--solid pdp__add" type="button"></button>' +
+            '<a class="btn btn--line pdp__enq" href="#">Enquire</a>' +
+          "</div>" +
+          '<p class="pdp__note">Hand-painted original — never reprinted, never repeated. Extra 10% off with code <b>WELCOME10</b> at checkout.</p>' +
+        "</div>" +
+      "</div>";
+    document.body.appendChild(pdp);
+    pdp.addEventListener("click", function (e) {
+      if (e.target.closest("[data-pdp-close]")) closePdp();
+    });
+    var img = pdp.querySelector(".pdp__stage img");
+    img.addEventListener("click", function (e) {
+      pdpZoomed = !pdpZoomed;
+      var r = img.getBoundingClientRect();
+      img.style.transformOrigin = ((e.clientX - r.left) / r.width * 100).toFixed(1) + "% " +
+        ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%";
+      pdp.querySelector(".pdp__stage").classList.toggle("is-zoomed", pdpZoomed);
+    });
+    pdp.querySelector(".pdp__add").addEventListener("click", function () {
+      var id = pdp.getAttribute("data-id");
+      var p = products[id];
+      if (!p) return;
+      if (p.status === "available") { window.JA_CART.add(id); renderPdp(id); }
+      else { window.location.href = "commissions.html"; }
+    });
+  }
+  function renderPdp(id) {
+    var p = products[id];
+    if (!p) return;
+    pdp.setAttribute("data-id", id);
+    var img = pdp.querySelector(".pdp__stage img");
+    img.src = p.img; img.alt = p.title;
+    pdp.querySelector("#pdpTitle").textContent = p.title;
+    pdp.querySelector(".pdp__desc").textContent = p.desc || p.materials;
+    ["size", "materials", "framed"].forEach(function (k) {
+      pdp.querySelector('[data-f="' + k + '"]').textContent = p[k] || "—";
+    });
+    pdp.querySelector(".pdp__price").innerHTML =
+      "<s>" + window.JA_FORMAT(p.price) + "</s><b>" + window.JA_FORMAT(sale(p)) +
+      '</b><em class="off">20% off</em>';
+    var add = pdp.querySelector(".pdp__add");
+    if (p.status === "available") add.textContent = items.indexOf(id) !== -1 ? "In cart ✓" : "Add to cart";
+    else add.textContent = "Commission similar";
+    pdp.querySelector(".pdp__enq").href = "mailto:jabinakhterb@gmail.com?subject=" +
+      encodeURIComponent("Enquiry — " + p.title);
+  }
+  function openPdp(id) {
+    buildPdp();
+    renderPdp(id);
+    pdpZoomed = false;
+    pdp.querySelector(".pdp__stage").classList.remove("is-zoomed");
+    pdp.classList.add("is-open");
+    pdp.setAttribute("aria-hidden", "false");
+    document.body.classList.add("cart-open");
+    if (window.__lenis) window.__lenis.stop();
+    setTimeout(function () { pdp.querySelector(".pdp__x").focus(); }, 80);
+  }
+  function closePdp() {
+    if (!pdp || !pdp.classList.contains("is-open")) return;
+    pdp.classList.remove("is-open");
+    pdp.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cart-open");
+    if (window.__lenis) window.__lenis.start();
+  }
+  document.addEventListener("click", function (e) {
+    var host = e.target.closest(".piece, .rp");
+    if (!host) return;
+    /* buttons and links inside the card keep their own behaviour */
+    if (e.target.closest("a, button")) return;
+    var ref = host.querySelector("[data-add]") || host.querySelector("[data-price]") || host.querySelector("[data-size]");
+    var id = ref && (ref.getAttribute("data-id") || ref.getAttribute("data-price") || ref.getAttribute("data-size"));
+    if (id && products[id]) openPdp(id);
+  });
+
   /* fill any static price slots */
   document.querySelectorAll("[data-price]").forEach(function (el) {
     var p = products[el.getAttribute("data-price")];
-    if (p) el.textContent = window.JA_FORMAT(p.price);
+    if (p) el.innerHTML = "<s>" + window.JA_FORMAT(p.price) + "</s> <b>" +
+      window.JA_FORMAT(sale(p)) + "</b> <em class=\"off\">20% off</em>";
   });
   document.querySelectorAll("[data-size]").forEach(function (el) {
     var p = products[el.getAttribute("data-size")];
