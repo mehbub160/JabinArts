@@ -20,6 +20,11 @@ window.JA_PRODUCTS = [
     desc: "The Sacred House, in a dreaming garden. Acrylic on canvas · ornate gilt frame, double mat · painted once — this scene will never be made again",
     framed: "Ornate gilt frame, double mat, glazed", status: "available", unique: true },
 
+  { id: "golden-qul",       title: "The Golden Qul",           img: "assets/img/shop/golden-qul.jpg",
+    price: 19500, size: "size on request", materials: "Gold-toned ground, midnight roundel",
+    desc: "A midnight roundel of circular script centred on \u2018Qul\u2019, set in a gilded field \u00b7 ornate dark-gold frame \u2014 photographed installed in a panelled lounge.",
+    framed: "Ornate dark-gold frame, glazed", status: "available", unique: true },
+
   { id: "lilies-lapis",     title: "Whatever Good You Send",   img: "assets/img/lilies-lapis.jpg",
     price: 17500, size: "≈ 61 × 46 cm (approx.)", materials: "Gouache & gold on canvas",
     desc: "Qur’an 28:24. Gouache & gold on canvas · raised florals",
